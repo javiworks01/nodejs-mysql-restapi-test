@@ -3,8 +3,19 @@ const app = express();
 
 const port = 3000;
 
+// importamos la conexion a mysql
+import { pool } from './db.js';
+
 
 // endpoints
+
+app.get('/ping', async (req, res) => {
+
+    const [result] = await pool.query('SELECT 1 + 1 AS result'); 
+    res.json(result[0]);
+
+});
+
 
 // get employees
 app.get('/employees', (req, res) => {
