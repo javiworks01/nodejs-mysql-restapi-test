@@ -3,7 +3,7 @@ const app = express();
 
 const port = 3000;
 
-import indexRoutes from './routes/employees.routes.js';
+import indexRoutes from './routes/index.routes.js';
 import employeesRoutes from './routes/employees.routes.js';
 
 
