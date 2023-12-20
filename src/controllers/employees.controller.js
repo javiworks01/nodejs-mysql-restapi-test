@@ -52,9 +52,16 @@ export const updateEmployee = (req, res) => {
 };
 
 
-export const deleteEmployee = (req, res) => {
+export const deleteEmployee = async (req, res) => {
     
-    res.status(200).send('Borrando empleado');
+    const {id} = req.params;
+    const [result] = await pool.query('DELETE FROM employee WHERE id = ?', [id]);
+    if (result.affectedRows <= 0) {
+        return res.status(404).json({ success: false, message: 'Employee not found' , data: []});
+    }
+
+    res.status(204).json({success: true, affectedRows: result.affectedRows });
+
 
 };
 
